@@ -1,0 +1,2 @@
+# SerilogExampleProjects
+Serilog example projects
