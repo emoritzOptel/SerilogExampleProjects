@@ -10,6 +10,7 @@ namespace Net46ConsoleApp
     {
         private static void Main()
         {
+            // This line is just for debugging configuration issues.
             SelfLog.Enable(Console.WriteLine);
 
             Log.Logger =

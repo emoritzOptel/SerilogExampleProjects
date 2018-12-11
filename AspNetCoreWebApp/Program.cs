@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore;
+﻿using System.Diagnostics;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using System.IO;
+using Serilog.Debugging;
 
 namespace AspNetCoreWebApp
 {
@@ -10,6 +12,9 @@ namespace AspNetCoreWebApp
     {
         public static void Main(string[] args)
         {
+            // This line is just for debugging configuration issues.
+            SelfLog.Enable(m => Debug.WriteLine(m));
+
             var config =
                 new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
@@ -21,9 +26,14 @@ namespace AspNetCoreWebApp
                 new LoggerConfiguration()
                     .ReadFrom.Configuration(config);
 
-            // This allows you to use the PushProperty() functionality in Serilog.
-            // For more details: https://github.com/serilog/serilog/wiki/Enrichment
-            configuration.Enrich.FromLogContext();
+            configuration
+                // This allows you to use the PushProperty() functionality in Serilog.
+                // For more details: https://github.com/serilog/serilog/wiki/Enrichment
+                .Enrich.FromLogContext()
+                .Enrich.WithEnvironmentUserName()
+                .Enrich.WithMachineName()
+                .Enrich.WithProcessName()
+                .Enrich.WithThreadId();
 
             Log.Logger = configuration.CreateLogger();
 
