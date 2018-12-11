@@ -1,8 +1,8 @@
-﻿using System;
-using Serilog;
+﻿using Serilog;
 using Serilog.Context;
-using System.Diagnostics;
+using Serilog.Debugging;
 using Serilog.Events;
+using System;
 
 namespace Net46ConsoleApp
 {
@@ -10,15 +10,22 @@ namespace Net46ConsoleApp
     {
         private static void Main()
         {
+            SelfLog.Enable(Console.WriteLine);
+
             Log.Logger =
                 new LoggerConfiguration()
-                    .ReadFrom.AppSettings("file")
-                    .ReadFrom.AppSettings("console")
                     .MinimumLevel.Is(LogEventLevel.Verbose)
+                    .ReadFrom.AppSettings("console")
+                    .ReadFrom.AppSettings("file")
+                    .ReadFrom.AppSettings("es")
                     .Enrich.FromLogContext()
+                    .Enrich.WithEnvironmentUserName()
+                    .Enrich.WithMachineName()
+                    .Enrich.WithProcessName()
+                    .Enrich.WithThreadId()
                     .CreateLogger();
 
-            using (LogContext.PushProperty("ProcessName", Process.GetCurrentProcess().ProcessName))
+            using (LogContext.PushProperty("CustomPropertyName", "CustomPropertyValue"))
             {
                 Log.Verbose("Verbose log entry.");
                 Log.Debug("Debug log entry.");

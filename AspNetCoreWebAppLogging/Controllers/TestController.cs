@@ -25,8 +25,8 @@ namespace AspNetCoreWebApp.Controllers
             var controllerName = context.RouteData.Values["controller"];
             var actionName = context.RouteData.Values["action"];
 
-            _disposableControllerProp = LogContext.PushProperty("controller", controllerName);
-            _disposableActionProp = LogContext.PushProperty("action", actionName);
+            _disposableControllerProp = LogContext.PushProperty("Controller", controllerName);
+            _disposableActionProp = LogContext.PushProperty("Action", actionName);
 
             _logger.LogInformation("Starting action.");
 
@@ -52,7 +52,7 @@ namespace AspNetCoreWebApp.Controllers
 
                 await Task.Delay(1);
 
-                using (LogContext.PushProperty("customLogPropKey", "customLogPropValue"))
+                using (LogContext.PushProperty("CustomLogPropKey", "customLogPropValue"))
                 {
                     _logger.LogInformation("Custom inner log message.");
 
