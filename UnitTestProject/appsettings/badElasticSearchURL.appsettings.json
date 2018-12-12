@@ -1,0 +1,19 @@
+{
+  "Serilog": {
+    "Using": [
+      "Serilog.Sinks.Elasticsearch"
+    ],
+    "MinimumLevel": "Information",
+    "WriteTo": [
+      {
+        "Name": "Elasticsearch",
+        "Args": {
+          "nodeUris": "http://invalid:9200",
+          "indexFormat": "example.unit.test.{0:yyyy.MM}",
+          "autoRegisterTemplate": "true",
+          "autoRegisterTemplateVersion": "ESv6"
+        }
+      }
+    ]
+  }
+}

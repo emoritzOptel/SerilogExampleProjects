@@ -1,0 +1,13 @@
+{
+  "Serilog": {
+    "Using": [
+      "Does.Not.Exist"
+    ],
+    "MinimumLevel": "Information",
+    "WriteTo": [
+      {
+        "Name": "TestCorrelator"
+      }
+    ]
+  }
+}
