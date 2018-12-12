@@ -13,8 +13,8 @@
     <None Remove="appsettings\badWriteToAndGoodWriteTo.appsettings.json" />
     <None Remove="appsettings\emptySerilog.appsettings.json" />
     <None Remove="appsettings\goodElasticSearchURL.appsettings.json" />
-    <None Remove="empty.appsettings.json" />
-    <None Remove="valid.appsettings.json" />
+    <None Remove="appsettings\empty.appsettings.json" />
+    <None Remove="appsettings\valid.appsettings.json" />
   </ItemGroup>
 
   <ItemGroup>
