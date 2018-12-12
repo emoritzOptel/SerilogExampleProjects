@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Serilog;
@@ -100,6 +101,15 @@ namespace UnitTestProject
         public void BadElasticSearchURL_Configuration_ShouldNotThrow()
         {
             LogOneMessageUsingConfigFile("badElasticSearchURL.appsettings.json");
+        }
+
+        [TestMethod]
+        public void BlankElasticSearchURL_Configuration_ShouldThrow_TargetInvocationException()
+        {
+            Assert.ThrowsException<TargetInvocationException>(() =>
+            {
+                LogOneMessageUsingConfigFile("blankElasticSearchURL.appsettings.json");
+            });
         }
 
         [TestMethod]
