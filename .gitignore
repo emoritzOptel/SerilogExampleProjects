@@ -1,0 +1,15 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/SerilogExampleProjects/v15
+/AspNetCoreWebApp/obj
+/AspNetCoreWebApp/bin/Debug/netcoreapp2.1
+/Net46ConsoleApp/obj/Debug
+/Net46ConsoleApp/bin/Debug
+/packages
+/.vs
+/UnitTestProject/obj
+/UnitTestProject/bin/Debug/netcoreapp2.1
+/NetCoreConsoleApp/obj
+/NetCoreConsoleApp/bin/Debug/netcoreapp2.1
